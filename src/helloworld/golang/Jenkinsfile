@@ -14,10 +14,6 @@ pipeline {
         BRANCH_NAME = "main"
         BINARY_DIR = "cmd/hello-world"
         
-        // Golang Parameter
-        GO111MODULE = 'on'
-        CGO_ENABLED = 0
-
         REPOSITORY_DIR = "~/go/src/github.com/$COMPANY_NAME/$REPOSITORY_NAME"
     }
 
