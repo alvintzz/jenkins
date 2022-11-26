@@ -4,14 +4,14 @@ pipeline {
     agent any
 
     environment {
-        env.REPOSITORY_NAME = "testapp"
-        env.BRANCH_NAME = "main"
-        env.REPOSITORY_DIR = "~/go/src/github.com/alvintzz/$REPOSITORY_NAME"
+        REPOSITORY_NAME = "testapp"
+        BRANCH_NAME = "main"
+        REPOSITORY_DIR = "~/go/src/github.com/alvintzz/$REPOSITORY_NAME"
     }
 
     stage('Pull Code from Github') {
-        dir("$REPOSITORY_DIR") {
-            git branch: "$BRANCH_NAME", url: "https://github.com/tokopedia/${REPOSITORY_NAME}.git"
+        dir("${env.REPOSITORY_DIR}") {
+            git branch: "${env.BRANCH_NAME}", url: "https://github.com/tokopedia/${env.REPOSITORY_NAME}.git"
         }
     }
 
