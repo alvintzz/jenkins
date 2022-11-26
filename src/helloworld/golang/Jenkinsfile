@@ -6,14 +6,15 @@ pipeline {
     environment {
         REPOSITORY_NAME = "testapp"
         BRANCH_NAME = "main"
-        REPOSITORY_DIR = "~/go/src/github.com/alvintzz/$REPOSITORY_NAME"
+        COMPANY_NAME = "alvintzz"
+        REPOSITORY_DIR = "~/go/src/github.com/$COMPANY_NAME/$REPOSITORY_NAME"
     }
 
     stages {
         stage('Pull Code from Github') {
             steps {
                 dir("${env.REPOSITORY_DIR}") {
-                    git branch: "${env.BRANCH_NAME}", url: "https://github.com/tokopedia/${env.REPOSITORY_NAME}.git"
+                    git branch: "${env.BRANCH_NAME}", url: "https://github.com/${env.COMPANY_NAME}/${env.REPOSITORY_NAME}.git"
                 }
             }
         }
