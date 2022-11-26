@@ -16,6 +16,7 @@ pipeline {
         
         // Golang Parameter
         GO111MODULE = 'on'
+        CGO_ENABLED = 0
 
         REPOSITORY_DIR = "~/go/src/github.com/$COMPANY_NAME/$REPOSITORY_NAME"
     }
