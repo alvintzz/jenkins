@@ -32,7 +32,7 @@ pipeline {
         stage('Building') {
             steps {
                 dir("${env.REPOSITORY_DIR}") {
-                    sh 'go build -o ${env.REPOSITORY_NAME} ./${env.BINARY_DIR}'
+                    sh "go build -o ${env.REPOSITORY_NAME} ./${env.BINARY_DIR}"
                 }
             }
         }
