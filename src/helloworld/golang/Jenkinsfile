@@ -37,7 +37,7 @@ pipeline {
         stage('Running Unit Test') {
             steps {
                 dir("${env.REPOSITORY_DIR}") {
-                    sh 'go test ./... -race -cover'
+                    sh 'go test ./... -cover'
                 }
             }
         }
