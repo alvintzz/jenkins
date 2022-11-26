@@ -30,13 +30,17 @@ pipeline {
 
         stage('Building') {
             steps {
-                sh 'go build'
+                dir("${env.REPOSITORY_DIR}") {
+                    sh 'go build'
+                }
             }
         }
 
         stage('Running Unit Test') {
             steps {
-                sh 'go test ./... -race -cover'
+                dir("${env.REPOSITORY_DIR}") {
+                    sh 'go test ./... -race -cover'
+                }
             }
         }
 
