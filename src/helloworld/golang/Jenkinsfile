@@ -3,10 +3,19 @@
 pipeline {
     agent any
 
+    tools {
+        go 'go-1.17'
+    }
+
     environment {
+        //Github Parameter
+        COMPANY_NAME = "alvintzz"
         REPOSITORY_NAME = "testapp"
         BRANCH_NAME = "main"
-        COMPANY_NAME = "alvintzz"
+        
+        // Golang Parameter
+        GO111MODULE = 'on'
+
         REPOSITORY_DIR = "~/go/src/github.com/$COMPANY_NAME/$REPOSITORY_NAME"
     }
 
@@ -16,6 +25,18 @@ pipeline {
                 dir("${env.REPOSITORY_DIR}") {
                     git branch: "${env.BRANCH_NAME}", url: "https://github.com/${env.COMPANY_NAME}/${env.REPOSITORY_NAME}.git"
                 }
+            }
+        }
+
+        stage('Building') {
+            steps {
+                sh 'go build'
+            }
+        }
+
+        stage('Running Unit Test') {
+            steps {
+                sh 'go test ./... -race -cover'
             }
         }
 
