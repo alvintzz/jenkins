@@ -12,6 +12,7 @@ pipeline {
         COMPANY_NAME = "alvintzz"
         REPOSITORY_NAME = "testapp"
         BRANCH_NAME = "main"
+        BINARY_DIR = "cmd/hello-world"
         
         // Golang Parameter
         GO111MODULE = 'on'
@@ -31,7 +32,7 @@ pipeline {
         stage('Building') {
             steps {
                 dir("${env.REPOSITORY_DIR}") {
-                    sh 'go build'
+                    sh 'go build -o ${env.REPOSITORY_NAME} ./${env.BINARY_DIR}'
                 }
             }
         }
