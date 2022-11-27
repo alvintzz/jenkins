@@ -10,22 +10,26 @@ pipeline {
     }
 
     environment {
-        //Github Parameter
+        // Team Parameter
+        SERVICE_NAME = "Hello-World"
+        SERVICE_OWNER = "core-team"
+        
+        // Github Parameter
         COMPANY_NAME = "alvintzz"
         REPOSITORY_NAME = "testapp"
         BRANCH_NAME = "main"
         BINARY_DIR = "cmd/hello-world"
 
         // Service Parameter
-        SERVICE_NAME = "Hello-World"
-        SERVICE_OWNER = "core-team"
         NGINX_CONFIG_FILE = "devops/nginx/hello-world.cfg"
         INIT_CONFIG_FILE = "devops/init/hello-world.conf"
         
+        // Golang Parameter
         GOLANG_DIR = "go/src/"
         REPOSITORY_DIR = "$GOLANG_DIR/github.com/$COMPANY_NAME/$REPOSITORY_NAME"
         SOCKETMASTER_DIR = "$GOLANG_DIR/github.com/zimbatm/socketmaster"
-         
+        
+        // Ansible Parameter
         ANSIBLE_DIR = "ansible"
         INVENTORY_FILE = "$HOME/inventory.yaml"
         PLAYBOOK_FILE = "${WORKSPACE}/${ANSIBLE_DIR}/playbooks/hello-world.yaml"
