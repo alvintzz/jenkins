@@ -23,6 +23,8 @@ pipeline {
         
         REPOSITORY_DIR = "go/src/github.com/$COMPANY_NAME/$REPOSITORY_NAME"
         
+        SOCKETMASTER_DIR = "socketmaster"
+        SOCKETMASTER_REPO = "zimbatm/socketmaster"
         ANSIBLE_DIR = "ansible"
         INVENTORY_FILE = "$HOME/inventory.yaml"
         PLAYBOOK_FILE = "${WORKSPACE}/${ANSIBLE_DIR}/playbooks/hello-world.yaml"
@@ -35,6 +37,15 @@ pipeline {
                 dir("${env.ANSIBLE_DIR}") {
                     git branch: "main", url: "https://github.com/${env.COMPANY_NAME}/ansible.git"
                     sh "cp -r ${WORKSPACE}/${env.ANSIBLE_DIR}/roles/* ~/.ansible/roles/"
+                }
+            }
+        }
+
+        stage('Initialize Socketmaster') {
+            steps {
+                dir("${env.SOCKETMASTER_DIR}") {
+                    git branch: "master", url: "https://github.com/zimbatm/socketmaster.git"
+                    sh "go build -o socketmaster"
                 }
             }
         }
