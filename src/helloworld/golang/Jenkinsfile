@@ -45,6 +45,8 @@ pipeline {
             steps {
                 dir("${env.SOCKETMASTER_DIR}") {
                     git branch: "master", url: "https://github.com/zimbatm/socketmaster.git"
+                    sh "go mod init"
+                    sh "go mod tidy"
                     sh "go build -o socketmaster"
                 }
             }
