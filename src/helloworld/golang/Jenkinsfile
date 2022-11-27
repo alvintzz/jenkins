@@ -21,7 +21,7 @@ pipeline {
         ANSIBLE_DIR = "ansible"
         INVENTORY_FILE = "$HOME/inventory.yaml"
         PLAYBOOK_FILE = "${WORKSPACE}/${ANSIBLE_DIR}/playbooks/hello-world.yaml"
-        SSH_PRIVATE_KEY = "~/.ssh/gcp_ed25519"
+        SSH_PRIVATE_KEY = "${HOME}/.ssh/gcp_ed25519"
     }
 
     stages {
