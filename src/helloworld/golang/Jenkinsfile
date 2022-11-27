@@ -21,9 +21,9 @@ pipeline {
         SERVICE_OWNER = "core-team"
         NGINX_CONFIG_FILE = "devops/nginx/hello-world.cfg"
         
-        GOLANG_REPOSITORY_DIR = "go/src/"
-        REPOSITORY_DIR = "github.com/$COMPANY_NAME/$REPOSITORY_NAME"
-        SOCKETMASTER_DIR = "github.com/zimbatm/socketmaster"
+        GOLANG_DIR = "go/src/"
+        REPOSITORY_DIR = "$GOLANG_DIR/github.com/$COMPANY_NAME/$REPOSITORY_NAME"
+        SOCKETMASTER_DIR = "GOLANG_DIR/github.com/zimbatm/socketmaster"
          
         ANSIBLE_DIR = "ansible"
         INVENTORY_FILE = "$HOME/inventory.yaml"
