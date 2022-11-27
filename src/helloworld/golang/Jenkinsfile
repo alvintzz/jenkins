@@ -20,6 +20,7 @@ pipeline {
         SERVICE_NAME = "Hello-World"
         SERVICE_OWNER = "core-team"
         NGINX_CONFIG_FILE = "devops/nginx/hello-world.cfg"
+        INIT_CONFIG_FILE = "devops/init/hello-world.conf"
         
         GOLANG_DIR = "go/src/"
         REPOSITORY_DIR = "$GOLANG_DIR/github.com/$COMPANY_NAME/$REPOSITORY_NAME"
@@ -41,16 +42,16 @@ pipeline {
             }
         }
 
-        stage('Initialize Socketmaster') {
-            steps {
-                dir("${env.SOCKETMASTER_DIR}") {
-                    git branch: "master", url: "https://github.com/zimbatm/socketmaster.git"
-                    sh "go mod init"
-                    sh "go mod tidy"
-                    sh "go build -o socketmaster"
-                }
-            }
-        }
+        // stage('Initialize Socketmaster') {
+        //     steps {
+        //         dir("${env.SOCKETMASTER_DIR}") {
+        //             git branch: "master", url: "https://github.com/zimbatm/socketmaster.git"
+        //             sh "go mod init"
+        //             sh "go mod tidy"
+        //             sh "go build -o socketmaster"
+        //         }
+        //     }
+        // }
 
         stage('Pull Code from Github') {
             steps {
