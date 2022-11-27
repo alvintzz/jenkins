@@ -20,14 +20,14 @@ pipeline {
         
         ANSIBLE_DIR = "ansible"
         INVENTORY_FILE = "$HOME/inventory.yaml"
-        PLAYBOOK_FILE = "playbooks/hello-world.yaml"
+        PLAYBOOK_FILE = "${WORKSPACE}/${ANSIBLE_DIR}/playbooks/hello-world.yaml"
     }
 
     stages {
         stage('Initialize Ansible') {
             steps {
                 dir("${env.ANSIBLE_DIR}") {
-                    git branch: "main", url: "https://github.com/${env.COMPANY_NAME}/jenkins.git"
+                    git branch: "main", url: "https://github.com/${env.COMPANY_NAME}/ansible.git"
                 }
             }
         }
@@ -59,7 +59,7 @@ pipeline {
         stage('Deploying') {
             steps {
                 dir("${env.REPOSITORY_DIR}") {
-                    ansiblePlaybook inventory: "${env.INVENTORY_FILE}", playbook: "${env.ANSIBLE_DIR}/${env.PLAYBOOK_FILE}"
+                    ansiblePlaybook inventory: "${env.INVENTORY_FILE}", playbook: "${env.PLAYBOOK_FILE}"
                 }
             }
         }
