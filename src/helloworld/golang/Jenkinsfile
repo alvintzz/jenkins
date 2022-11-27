@@ -16,10 +16,22 @@ pipeline {
         BRANCH_NAME = "main"
         BINARY_DIR = "cmd/hello-world"
         
-        REPOSITORY_DIR = "~/go/src/github.com/$COMPANY_NAME/$REPOSITORY_NAME"
+        REPOSITORY_DIR = "go/src/github.com/$COMPANY_NAME/$REPOSITORY_NAME"
+        
+        ANSIBLE_DIR = "ansible/"
+        INVENTORY_FILE = "$HOME/inventory.yaml"
+        PLAYBOOK_FILE = "playbooks/hello-world.yaml"
     }
 
     stages {
+        stage('Initialize Ansible') {
+            steps {
+                dir("${env.ANSIBLE_DIR}") {
+                    git branch: "main", url: "https://github.com/${env.COMPANY_NAME}/jenkins.git"
+                }
+            }
+        }
+
         stage('Pull Code from Github') {
             steps {
                 dir("${env.REPOSITORY_DIR}") {
@@ -40,6 +52,14 @@ pipeline {
             steps {
                 dir("${env.REPOSITORY_DIR}") {
                     sh 'go test ./... -race -cover'
+                }
+            }
+        }
+
+        stage('Deploying') {
+            steps {
+                dir("${env.REPOSITORY_DIR}") {
+                    ansiblePlaybook inventory: ${env.INVENTORY_FILE}, playbook: "${env.ANSIBLE_DIR}/${env.PLAYBOOK_FILE}"
                 }
             }
         }
