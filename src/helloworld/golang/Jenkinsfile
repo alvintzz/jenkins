@@ -31,7 +31,7 @@ pipeline {
         
         // Ansible Parameter
         ANSIBLE_DIR = "ansible"
-        INVENTORY_FILE = "$HOME/inventory.yaml"
+        INVENTORY_FILE = "/opt/ansible/inventory/gcp.yaml"
         PLAYBOOK_FILE = "${WORKSPACE}/${ANSIBLE_DIR}/playbooks/hello-world.yaml"
         SSH_PRIVATE_KEY = "${HOME}/.ssh/gcp_ed25519"
     }
