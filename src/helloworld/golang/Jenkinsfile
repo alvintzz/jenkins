@@ -60,7 +60,7 @@ pipeline {
         stage('Deploying') {
             steps {
                 dir("${env.REPOSITORY_DIR}") {
-                    ansiblePlaybook credentialsId: "${env.SSH_PRIVATE_KEY}" inventory: "${env.INVENTORY_FILE}", playbook: "${env.PLAYBOOK_FILE}"
+                    ansiblePlaybook credentialsId: "${env.SSH_PRIVATE_KEY}", inventory: "${env.INVENTORY_FILE}", playbook: "${env.PLAYBOOK_FILE}"
                 }
             }
         }
