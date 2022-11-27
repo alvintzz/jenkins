@@ -15,6 +15,11 @@ pipeline {
         REPOSITORY_NAME = "testapp"
         BRANCH_NAME = "main"
         BINARY_DIR = "cmd/hello-world"
+
+        // Service Parameter
+        SERVICE_NAME = "Hello-World"
+        SERVICE_OWNER = "core-team"
+        NGINX_CONFIG_FILE = "devops/nginx/hello-world.cfg"
         
         REPOSITORY_DIR = "go/src/github.com/$COMPANY_NAME/$REPOSITORY_NAME"
         
@@ -61,7 +66,10 @@ pipeline {
         stage('Deploying') {
             steps {
                 dir("${env.REPOSITORY_DIR}") {
-                    ansiblePlaybook inventory: "${env.INVENTORY_FILE}", playbook: "${env.PLAYBOOK_FILE}"
+                    ansiblePlaybook 
+                    inventory: "${env.INVENTORY_FILE}", 
+                    playbook: "${env.PLAYBOOK_FILE}",
+                    extras: '-e NGINX_CONFIG_FILE="${env.NGINX_CONFIGF_FILE}"')
                 }
             }
         }
