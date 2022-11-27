@@ -59,7 +59,7 @@ pipeline {
         stage('Deploying') {
             steps {
                 dir("${env.REPOSITORY_DIR}") {
-                    sh "ansible-playbook '${env.PLAYBOOK_FILE}' -i '${env.INVENTORY_FILE}'"
+                    ansiblePlaybook inventory: "${env.INVENTORY_FILE}", playbook: "${env.PLAYBOOK_FILE}"
                 }
             }
         }
