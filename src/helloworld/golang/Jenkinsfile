@@ -23,7 +23,7 @@ pipeline {
         
         GOLANG_DIR = "go/src/"
         REPOSITORY_DIR = "$GOLANG_DIR/github.com/$COMPANY_NAME/$REPOSITORY_NAME"
-        SOCKETMASTER_DIR = "GOLANG_DIR/github.com/zimbatm/socketmaster"
+        SOCKETMASTER_DIR = "$GOLANG_DIR/github.com/zimbatm/socketmaster"
          
         ANSIBLE_DIR = "ansible"
         INVENTORY_FILE = "$HOME/inventory.yaml"
