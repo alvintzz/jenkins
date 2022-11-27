@@ -60,7 +60,6 @@ pipeline {
 
         stage('Deploying') {
             steps {
-                sh "ssh-agent bash | ssh-add /home/sa_106945247317288892122/.ssh/gcp_ed25519"
                 dir("${env.REPOSITORY_DIR}") {
                     ansiblePlaybook inventory: "${env.INVENTORY_FILE}", playbook: "${env.PLAYBOOK_FILE}"
                 }
