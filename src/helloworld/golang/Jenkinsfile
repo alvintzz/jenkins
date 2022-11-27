@@ -60,8 +60,8 @@ pipeline {
 
         stage('Deploying') {
             steps {
-                sh 'ssh-agent bash'
-                sh 'ssh-add ${env.SSH_PRIVATE_KEY}'
+                sh "ssh-agent bash"
+                sh "ssh-add ${env.SSH_PRIVATE_KEY}"
                 dir("${env.REPOSITORY_DIR}") {
                     ansiblePlaybook inventory: "${env.INVENTORY_FILE}", playbook: "${env.PLAYBOOK_FILE}"
                 }
