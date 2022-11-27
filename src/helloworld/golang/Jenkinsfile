@@ -21,6 +21,7 @@ pipeline {
         ANSIBLE_DIR = "ansible"
         INVENTORY_FILE = "$HOME/inventory.yaml"
         PLAYBOOK_FILE = "${WORKSPACE}/${ANSIBLE_DIR}/playbooks/hello-world.yaml"
+        SSH_PRIVATE_KEY = "~/.ssh/gcp_ed25519"
     }
 
     stages {
@@ -59,7 +60,7 @@ pipeline {
         stage('Deploying') {
             steps {
                 dir("${env.REPOSITORY_DIR}") {
-                    ansiblePlaybook inventory: "${env.INVENTORY_FILE}", playbook: "${env.PLAYBOOK_FILE}"
+                    ansiblePlaybook credentialsId: "${env.SSH_PRIVATE_KEY}" inventory: "${env.INVENTORY_FILE}", playbook: "${env.PLAYBOOK_FILE}"
                 }
             }
         }
