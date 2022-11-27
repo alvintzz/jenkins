@@ -18,7 +18,7 @@ pipeline {
         
         REPOSITORY_DIR = "go/src/github.com/$COMPANY_NAME/$REPOSITORY_NAME"
         
-        ANSIBLE_DIR = "ansible/"
+        ANSIBLE_DIR = "ansible"
         INVENTORY_FILE = "$HOME/inventory.yaml"
         PLAYBOOK_FILE = "playbooks/hello-world.yaml"
     }
