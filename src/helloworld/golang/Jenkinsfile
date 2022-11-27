@@ -29,7 +29,7 @@ pipeline {
             steps {
                 dir("${env.ANSIBLE_DIR}") {
                     git branch: "main", url: "https://github.com/${env.COMPANY_NAME}/ansible.git"
-                    sh "cp -r ${env.ANSIBLE_DIR}/roles/* ~/.ansible/roles/"
+                    sh "cp -r ${WORKSPACE}/${env.ANSIBLE_DIR}/roles/* ~/.ansible/roles/"
                 }
             }
         }
